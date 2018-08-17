@@ -5,9 +5,9 @@
  * Date: 2018/8/17
  * Time: 上午10:54
  */
-namespace Iwunan\Rbac;
+namespace Spexial\Rbac;
 
-class MySqlConnection
+class Connection
 {
     private $host;
     private $user;
@@ -15,13 +15,14 @@ class MySqlConnection
     private $dbname;
     private $port;
     private $prefix;
+    public static  $Db;
 
     public function __construct()
     {
         $this->setMysqlConfig();
         $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->dbname;chatset=utf8";
         try {
-            $this->db = new \PDO($dsn, $this->user, $this->pwd);
+            self::$Db = new \PDO($dsn, $this->user, $this->pwd);
         } catch (\PDOException $e) {
             die ($e->getMessage());
         }

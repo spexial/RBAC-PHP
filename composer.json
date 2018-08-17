@@ -1,0 +1,24 @@
+
+{
+  "name":"spexial/rbac",
+  "description":"",
+  "license":"MIT",
+  "homepage":"http://www.wunan.online",
+  "keywords":["iwunan"],
+  "version":"1.0",
+  "authors":[
+    {
+      "name":"spexial Nan",
+      "homepage":"http://www.wunan.online",
+      "role":"Developer"
+    }
+  ],
+  "support":{
+    "email":"wunan9531@gmail.com"
+  },
+  "autoload":{
+    "psr-4":{
+      "Spexial\\Rbac\\":"src/"
+    }
+  }
+}
