@@ -14,13 +14,12 @@ class RbacManage
     {
         $connect = Connection::$Db;
         return $connect;
-
     }
 
-    public static function check()
+    function tablePrefix()
     {
-
+        return Connection::$tablePrefix;
     }
 }
 $Rbac = new RbacManage();
-var_dump($Rbac);
+var_dump($Rbac->tablePrefix());

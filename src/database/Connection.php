@@ -10,12 +10,18 @@ namespace Spexial\Rbac\Database;
 class Connection
 {
     private $host;
+
     private $user;
+
     private $pwd;
+
     private $dbname;
+
     private $port;
-    private $prefix;
+
     public static  $Db;
+
+    public static $tablePrefix;
 
     public function __construct()
     {
@@ -36,7 +42,7 @@ class Connection
         $this->user   = $config['username'];
         $this->pwd    = $config['password'];
         $this->dbname = $config['database'];
-        $this->prefix = $config['prefix'];
+        self::$tablePrefix = $config['prefix'];
     }
 
     private function config($full)
