@@ -5,7 +5,7 @@
  * Date: 2018/8/17
  * Time: 上午10:54
  */
-namespace Spexial\Rbac;
+namespace Spexial\Rbac\Database;
 
 class Connection
 {
@@ -48,7 +48,7 @@ class Connection
     }
     private function configFile($file)
     {
-        $file = __DIR__.'/config/'.$file.'.php';
+        $file = __DIR__ . '/config/' .$file.'.php';
         if ($this->isFile($file)) {
             return require $file;
         }

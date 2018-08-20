@@ -6,13 +6,15 @@
  * Time: 上午10:54
  */
 namespace Spexial\Rbac;
-
-
+require_once ('../autoload.php');
+use Spexial\Rbac\Database\Connection;
 class RbacManage
 {
     public function __construct()
     {
-        return Connection::$Db;
+        $connect = Connection::$Db;
+        return $connect;
+
     }
 
     public static function check()
