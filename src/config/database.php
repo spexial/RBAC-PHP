@@ -17,10 +17,10 @@ return [
             'port'      => '3306',
             'database'  => 'laravel',
             'username'  => 'root',
-            'password'  => 'wunan950331',
+            'password'  => '',
             'charset'   => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
-            'prefix'    => 'wunan_',
+            'prefix'    => 'rbac_',
         ]
     ]
 ];
