@@ -19,4 +19,4 @@ class Role extends RbacManage
 
 $role = new Role();
 $sql = 'select * from admins where id = 2';
-var_dump($role->first($sql));
+var_dump($role->first($sql));;die;
