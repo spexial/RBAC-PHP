@@ -20,8 +20,8 @@ spl_autoload_register(
             $file = $dir . DIRECTORY_SEPARATOR . $part;
             $file = str_replace('Spexial/Rbac','src',$file);
             if (is_readable($file)) {
-                require $file;
-                return;
+                return require $file;
+
             }
         }
     }

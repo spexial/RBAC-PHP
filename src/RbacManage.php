@@ -6,20 +6,28 @@
  * Time: 上午10:54
  */
 namespace Spexial\Rbac;
-require_once ('../autoload.php');
 use Spexial\Rbac\Database\Connection;
+use PDO;
 class RbacManage
 {
+    public  $tablePrefix;
+
     public function __construct()
     {
-        $connect = Connection::$Db;
-        return $connect;
+        $this->tablePrefix = Connection::getInstance()->prefix;
     }
 
-    function tablePrefix()
+    static function query($query)
     {
-        return Connection::$tablePrefix;
+        return Connection::getInstance()->query($query);
+    }
+
+     static function first($query)
+    {
+        try{
+            return self::query($query)->fetch(PDO::FETCH_ASSOC);
+        }catch (\PDOException $e ){
+            die($e->getMessage());
+        }
     }
 }
-$Rbac = new RbacManage();
-var_dump($Rbac->tablePrefix());

@@ -6,6 +6,7 @@
  * Time: 上午10:54
  */
 namespace Spexial\Rbac\Database;
+use PDO;
 
 class Connection
 {
@@ -19,33 +20,48 @@ class Connection
 
     private $port;
 
-    public static  $Db;
+    public  $prefix;
 
-    public static $tablePrefix;
+    public static $Db;
 
-    public function __construct()
+    public static $instance;
+
+
+    private function __construct()
     {
         $this->setMysqlConfig();
-        $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->dbname;chatset=utf8";
+        $dsn = "mysql:host=$this->host;port=$this->port;dbname=$this->dbname";
         try {
-            self::$Db = new \PDO($dsn, $this->user, $this->pwd);
+            self::$Db = new PDO($dsn, $this->user, $this->pwd);
         } catch (\PDOException $e) {
             die ($e->getMessage());
         }
     }
 
-    public function setMysqlConfig()
+    public function __clone()
     {
-        $config       = $this->config('database.connection')['mysql'];
+        trigger_error('Clone is not allowed.',E_USER_ERROR);
+    }
+
+    public static function getInstance(){
+        if(!self::$instance instanceof static || !self::$Db){
+            self::$instance = new static();
+        }
+        return self::$instance;
+    }
+
+    private  function setMysqlConfig()
+    {
+        $config  = $this->config('database.connection')['mysql'];
         $this->host   = $config['host'];
         $this->port   = $config['port'];
         $this->user   = $config['username'];
         $this->pwd    = $config['password'];
         $this->dbname = $config['database'];
-        self::$tablePrefix = $config['prefix'];
+        $this->prefix = $config['prefix'];
     }
 
-    private function config($full)
+    public function config($full)
     {
         $args  = explode('.',$full);
         $file  = $this->configFile(reset($args));
@@ -54,7 +70,7 @@ class Connection
     }
     private function configFile($file)
     {
-        $file = __DIR__ . '/config/' .$file.'.php';
+        $file = __DIR__ . '/../config/' .$file.'.php';
         if ($this->isFile($file)) {
             return require $file;
         }
@@ -65,5 +81,10 @@ class Connection
     private function isFile($file)
     {
         return is_file($file);
+    }
+
+    public function query($query)
+    {
+        return self::$Db->query($query);
     }
 }
