@@ -8,6 +8,7 @@
 namespace Spexial\Rbac;
 use Spexial\Rbac\Database\Connection;
 use PDO;
+require_once('../autoload.php');
 class RbacManage
 {
     public  $tablePrefix;

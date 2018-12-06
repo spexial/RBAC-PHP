@@ -11,18 +11,12 @@ spl_autoload_register(
         // a partial filename
         $part = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
         // directories where we can find classes
-        $dirs = array(
-            __DIR__ ,
-        );
-        // go through the directories to find classes
-        foreach ($dirs as $dir) {
 
-            $file = $dir . DIRECTORY_SEPARATOR . $part;
-            $file = str_replace('Spexial/Rbac','src',$file);
-            if (is_readable($file)) {
-                return require $file;
+        $file = __DIR__ . DIRECTORY_SEPARATOR . $part;
+        $file = str_replace('Spexial/Rbac','src',$file);
+        if (is_readable($file)) {
+            return require $file;
 
-            }
         }
     }
 );

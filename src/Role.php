@@ -7,8 +7,7 @@
  */
 
 namespace Spexial\Rbac;
-require_once('../autoload.php');
-
+require_once ('../autoload.php');
 class Role extends RbacManage
 {
     public function getPermissions()
@@ -19,5 +18,5 @@ class Role extends RbacManage
 
 $role = new Role();
 //TODO:: test
-$sql = 'select * from admins where id = 1';
+$sql = 'select * from admins where id = 2';
 var_dump($role->first($sql));
